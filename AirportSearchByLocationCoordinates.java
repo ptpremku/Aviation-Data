@@ -11,7 +11,10 @@ public class AirportSearchByLocationCoordinates {
 
         String responseLink = "https://aviation-reference-data.p.rapidapi.com/airports/search?lat=" + lat + "&lon=" + lon + "&radius=" + radius;
 
+
+        System.out.println("\n");
         System.out.println("Loading....");
+        System.out.println("\n");
 
         HttpResponse<String> response = Unirest.get(responseLink)
                 .header("X-RapidAPI-Key", key)
