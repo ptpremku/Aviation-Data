@@ -1,50 +1,50 @@
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import kong.unirest.core.HttpResponse;
-import kong.unirest.core.Unirest;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        // Making the API call
-        HttpResponse<String> response = Unirest.get("https://aviation-reference-data.p.rapidapi.com/airports/search?lat=-54.810&lon=-68.315&radius=100")
-                .header("X-RapidAPI-Key", "e335238e38msh8c1b127fe2e2215p129e09jsnaf8ccd0edf0a")
-                .header("X-RapidAPI-Host", "aviation-reference-data.p.rapidapi.com")
-                .asString();
 
-        if (response.getStatus() == 200) {
-            // Parse the response body to JSON
-            Gson gson = new Gson();
-            JsonArray jsonArray = gson.fromJson(response.getBody(), JsonArray.class);
+        new Main().print();
+        int input;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter Your Choice: ");
+        input = sc.nextInt();
 
-            // Iterate through each object in the array
-            for (JsonElement element : jsonArray) {
-                if (element instanceof JsonObject airport) {
+        while (input == 1 || input == 2 || input == 3 || input == 4 || input == 5 || input == 6 || input == 7 || input == 8 || input == 9){
 
-                    // Extract specific fields from each object
-                    String iataCode = airport.get("iataCode").getAsString();
-                    String icaoCode = airport.get("icaoCode").getAsString();
-                    String name = airport.get("name").getAsString();
-                    String countryCode = airport.get("alpha2countryCode").getAsString();
-                    double latitude = airport.get("latitude").getAsDouble();
-                    double longitude = airport.get("longitude").getAsDouble();
+            if (input == 1){
+                double lat, lon;
+                int radius;
+                String APIKEY;
+                System.out.println("Enter Latitude:");
+                lat = sc.nextDouble();
 
-                    // Print the extracted information
-                    System.out.println("Airport: " + name);
-                    System.out.println("IATA Code: " + iataCode);
-                    System.out.println("ICAO Code: " + icaoCode);
-                    System.out.println("Country Code: " + countryCode);
-                    System.out.println("Latitude: " + latitude);
-                    System.out.println("Longitude: " + longitude);
-                    System.out.println();
-                }
+                System.out.println("Enter Longitude:");
+                lon = sc.nextDouble();
+
+                System.out.println("Enter Radius:");
+                radius = sc.nextInt();
+
+                sc.nextLine();
+
+                System.out.println("Enter APIKEY:");
+                APIKEY = sc.nextLine();
+
+                new Main().findAirportByLocationCoordinates(lat,lon,radius, APIKEY);
+                input = sc.nextInt();
             }
-        } else {
-            System.out.println("Error: " + response.getStatusText());
+            else {
+                break;
+            }
         }
 
-        System.out.println("Response code: " + response.getStatus());
-        System.out.println("Response body: " + response.getBody());
+
+    }
+
+    public void findAirportByLocationCoordinates(double lat, double lon, int radius, String key){
+        new AirportSearchByLocationCoordinates().findAirport(lat, lon, radius, key);
+    }
+
+    public void print(){
+        System.out.println("1. Find Airport by Location Coordinate");
     }
 }
