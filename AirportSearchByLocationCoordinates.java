@@ -50,5 +50,6 @@ public class AirportSearchByLocationCoordinates {
             }
         } else {
             System.out.println("Error: " + response.getStatusText());
-        }}
+        }
+    }
 }

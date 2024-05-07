@@ -30,8 +30,29 @@ public class Main {
                 APIKEY = sc.nextLine();
 
                 new Main().findAirportByLocationCoordinates(lat,lon,radius, APIKEY);
+                System.out.println("\n");
+                new Main().print();
+                System.out.println("Enter Your Choice: ");
                 input = sc.nextInt();
             }
+
+            else if (input == 2){
+                String airplaneCode, APIKEY;
+                Scanner myObj = new Scanner(System.in);
+
+                System.out.println("Enter APIKEY:");
+                APIKEY = myObj.nextLine();
+
+                System.out.println("Enter Airplane Code:");
+                airplaneCode = myObj.nextLine();
+
+                new Main().airplaneLookupViaCode(airplaneCode, APIKEY);
+                System.out.println("\n");
+                new Main().print();
+                System.out.println("Enter Your Choice: ");
+                input = sc.nextInt();
+            }
+
             else {
                 break;
             }
@@ -44,7 +65,14 @@ public class Main {
         new AirportSearchByLocationCoordinates().findAirport(lat, lon, radius, key);
     }
 
+    public void airplaneLookupViaCode(String airplaneCode, String APIKEY){
+        new AircraftCode().aircraftLookup(airplaneCode, APIKEY);
+    }
+
     public void print(){
-        System.out.println("1. Find Airport by Location Coordinate");
+        System.out.println("Choices: ");
+        System.out.println("1. Find Airport by Location Coordinates");
+        System.out.println("2. Find Airplane by Airplane Code");
+        System.out.println("3. Find All Airlines by Searching or Autocompleting Airlines by Name");
     }
 }
