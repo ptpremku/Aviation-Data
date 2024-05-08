@@ -53,6 +53,23 @@ public class Main {
                 input = sc.nextInt();
             }
 
+            else if (input == 3){
+                String airlineName, APIKEY;
+                Scanner myObj = new Scanner(System.in);
+
+                System.out.println("Enter APIKEY:");
+                APIKEY = myObj.nextLine();
+
+                System.out.println("Enter Airline Name (OR Prefix):");
+                airlineName = myObj.nextLine();
+
+                new Main().airlineLookupViaName(airlineName, APIKEY);
+                System.out.println("\n");
+                new Main().print();
+                System.out.println("Enter Your Choice: ");
+                input = sc.nextInt();
+            }
+
             else {
                 break;
             }
@@ -67,6 +84,10 @@ public class Main {
 
     public void airplaneLookupViaCode(String airplaneCode, String APIKEY){
         new AircraftCode().aircraftLookup(airplaneCode, APIKEY);
+    }
+
+    public void airlineLookupViaName(String airlineName, String APIKEY){
+        new SearchORAutoCompleteAirlines().airlineLookup(airlineName, APIKEY);
     }
 
     public void print(){
