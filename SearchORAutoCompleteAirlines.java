@@ -12,7 +12,9 @@ public class SearchORAutoCompleteAirlines {
         System.out.println("Loading....");
         System.out.println("\n");
 
-        HttpResponse<String> response = Unirest.get("https://aviation-reference-data.p.rapidapi.com/airline/search?name=" + name)
+        String link = "https://aviation-reference-data.p.rapidapi.com/airline/search?name=" + name;
+
+        HttpResponse<String> response = Unirest.get(link)
                 .header("X-RapidAPI-Key", APIKEY)
                 .header("X-RapidAPI-Host", "aviation-reference-data.p.rapidapi.com")
                 .asString();
