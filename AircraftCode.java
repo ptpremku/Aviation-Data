@@ -29,7 +29,7 @@ public class AircraftCode {
             System.out.println("Manufacturer: " + manufacturer);
             System.out.println("Model Name: " + modelName);
         } else {
-            System.out.println("Error: " + response.getStatusText());
+            System.out.println("Error: Aircraft not found or Something else went wrong");
         }
     }
 }

@@ -63,7 +63,24 @@ public class Main {
                 System.out.println("Enter Airline Name (OR Prefix):");
                 airlineName = myObj.nextLine();
 
-                new Main().airlineLookupViaName(airlineName, APIKEY);
+                new Main().allAirlineLookupViaName(airlineName, APIKEY);
+                System.out.println("\n");
+                new Main().print();
+                System.out.println("Enter Your Choice: ");
+                input = sc.nextInt();
+            }
+
+            else if (input == 4){
+                String code, APIKEY;
+                Scanner myObj = new Scanner(System.in);
+
+                System.out.println("Enter APIKEY:");
+                APIKEY = myObj.nextLine();
+
+                System.out.println("Enter Code");
+                code = myObj.nextLine();
+
+                new Main().airlineLookupViaName(code, APIKEY);
                 System.out.println("\n");
                 new Main().print();
                 System.out.println("Enter Your Choice: ");
@@ -86,8 +103,12 @@ public class Main {
         new AircraftCode().aircraftLookup(airplaneCode, APIKEY);
     }
 
-    public void airlineLookupViaName(String airlineName, String APIKEY){
+    public void allAirlineLookupViaName(String airlineName, String APIKEY){
         new SearchORAutoCompleteAirlines().airlineLookup(airlineName, APIKEY);
+    }
+
+    public void airlineLookupViaName(String code, String APIKEY){
+        new AirlineSearchViaIATAorICAO().retriveAirlineSearchViaIATAorICAO(code, APIKEY);
     }
 
     public void print(){
@@ -95,5 +116,6 @@ public class Main {
         System.out.println("1. Find Airport by Location Coordinates");
         System.out.println("2. Find Airplane by Airplane Code");
         System.out.println("3. Find All Airlines by Searching or Autocompleting Airlines by Name");
+        System.out.println("4. Get Airline/Airport Information by IATA or ICAO code");
     }
 }
