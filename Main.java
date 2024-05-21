@@ -87,8 +87,17 @@ public class Main {
                 input = sc.nextInt();
             }
 
-            else {
+            else if (input == 5) {
+                System.out.println("This program will quit now");
                 break;
+            }
+
+            else {
+                System.out.println("Invalid Input. Try again");
+                System.out.println("\n");
+                new Main().print();
+                System.out.println("Enter Your Choice: ");
+                input = sc.nextInt();
             }
         }
 
@@ -117,5 +126,6 @@ public class Main {
         System.out.println("2. Find Airplane by Airplane Code");
         System.out.println("3. Find All Airlines by Searching or Autocompleting Airlines by Name");
         System.out.println("4. Get Airline/Airport Information by IATA or ICAO code");
+        System.out.println("5. Exit");
     }
 }
