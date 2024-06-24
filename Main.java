@@ -9,7 +9,7 @@ public class Main {
         System.out.println("Enter Your Choice: ");
         input = sc.nextInt();
 
-        while (input == 1 || input == 2 || input == 3 || input == 4 || input == 5 || input == 6 || input == 7 || input == 8 || input == 9){
+        while (input == 1 || input == 2 || input == 3 || input == 4 || input == 5){
 
             if (input == 1){
                 double lat, lon;
